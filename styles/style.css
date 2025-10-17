@@ -1,28 +1,353 @@
+/* GENEL */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
-  background: #f7f7f7;
+  background-color: #fafafa;
   color: #333;
+  line-height: 1.6;
 }
 
-header {
-  background: #fff;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #08a4bd;
 }
 
 nav a {
-  margin: 0 10px;
+  margin-left: 25px;
   text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #08a4bd;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(to bottom right, rgba(8,164,189,0.5), rgba(255,255,255,0.5)),
+              url('https://images.unsplash.com/photo-1599058917212-d750089bc07b') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding-top: 60px;
+}
+
+.hero-content {
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  padding: 40px;
+  border-radius: 20px;
+  animation: fadeIn 1.5s ease;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.1em;
+  margin-bottom: 25px;
+}
+
+.btn {
+  background-color: #fff;
+  color: #08a4bd;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1em;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #08a4bd;
+  color: #fff;
+}
+
+/* HAREKETLER SAYFASI */
+.hareketler {
+  padding: 120px 20px 60px;
+  text-align: center;
+}
+
+.hareketler h2 {
+  color: #08a4bd;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.aciklama {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  color: #555;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card h3 {
+  margin: 15px 0 10px;
+  color: #08a4bd;
+}
+
+.card p {
+  padding: 0 15px 20px;
+  color: #555;
+}
+
+/* FOOTER */
+footer {
+  background: #08a4bd;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+}
+
+/* ANİMASYON */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* MOBİL */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero h1 {
+    font-size: 1.8em;
+  }
+  .hero-content {
+    padding: 25px;
+  }
+}
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* === Pilates Hareketleri Sayfası === */
+.hareketler {
+  padding: 80px 20px;
+  background-color: #f8fafb;
+  text-align: center;
+}
+
+.hareketler h2 {
+  font-size: 2.2rem;
+  color: #08a4bd;
+  margin-bottom: 10px;
+}
+
+.hareketler .intro {
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.hareketler-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 0 20px;
+}
+
+.hareket-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.hareket-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.hareket-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.hareket-card h3 {
+  color: #08a4bd;
+  margin: 15px 0 10px 0;
+  font-size: 1.3em;
+}
+
+.hareket-card p {
+  color: #555;
+  padding: 0 15px 25px 15px;
+  font-size: 1em;
+  line-height: 1.5;
+}
+/* -------------------------
+   HAREKETLER SAYFASI TASARIMI
+-------------------------- */
+
+.hareketler-container {
+  max-width: 1100px;
+  margin: 120px auto 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
   color: #333;
 }
 
-.hero {
+.intro-text {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.hareketler-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.hareket-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hareket-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.hareket-card h3 {
+  color: #2b6777;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.hareket-card p {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.hareket-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+/* Navbar stilleri */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #ffffff;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: background 0.3s ease;
+}
+
+.navbar.scroll {
+  background: #f4f4f4;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2b6777;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #2b6777;
+  text-decoration: underline;
+}
+
+footer {
   text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #b2fefa, #0ed2f7);
-  color: #fff;
+  padding: 20px;
+  color: #555;
+  font-size: 0.9rem;
 }

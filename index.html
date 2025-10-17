@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReformPilates | Pilatesi Keşfet</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReformPilates | Ana Sayfa</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>ReformPilates</h1>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">🧘‍♀️ ReformPilates</div>
     <nav>
-      <a href="#">Ana Sayfa</a>
-      <a href="#">Hareketler</a>
+      <a href="index.html" class="active">Ana Sayfa</a>
+      <a href="hareketler.html">Hareketler</a>
       <a href="#">Blog</a>
       <a href="#">Hakkında</a>
     </nav>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <h2>Pilates ile bedenini güçlendir</h2>
-    <p>Doğru nefes, denge ve güç ile kendini yeniden keşfet.</p>
-    <button>Başla</button>
+    <div class="hero-content">
+      <h1>Bedenini Güçlendir, Zihnini Dengele</h1>
+      <p>Pilates ile vücudunu tanı, dengenle buluş, gücünü keşfet.</p>
+      <button id="btnBasla" class="btn">Başla</button>
+    </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    <p>© 2025 ReformPilates | Tüm hakları saklıdır.</p>
+    <p>© 2025 ReformPilates — Denge, Güç ve Zarafet</p>
   </footer>
 
-  <script src="scripts/main.js"></script>
+  <script src="scripts/script.js"></script>
+
 </body>
 </html>
