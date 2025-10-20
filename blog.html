@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | ReformPilates</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <style>
+    /* === NAVBAR (TÜM SAYFALAR İLE UYUMLU) === */
+    .navbar {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 15px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.4em;
+      font-weight: 600;
+      color: #08a4bd;
+    }
+
+    .navbar nav {
+      margin-left: 180px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #08a4bd;
+    }
+
+    /* === BLOG SAYFASI === */
+    main {
+      margin-top: 100px;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .blog-title {
+      font-size: 2em;
+      color: #08a4bd;
+      margin-bottom: 10px;
+    }
+
+    .blog-intro {
+      max-width: 650px;
+      margin: 0 auto 40px;
+      color: #555;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .blog-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    }
+
+    /* === BLOG KART FOTOĞRAFLARI === */
+    .blog-card img {
+  width: 100%;
+  height: auto; /* yüksekliği otomatik */
+  max-height: 400px; /* istersen sınır koyabilirsin */
+  object-fit: contain; /* kırpmadan sığdırır */
+}
+
+
+    .blog-card-content {
+      padding: 20px;
+      text-align: left;
+    }
+
+    .blog-card-content h3 {
+      color: #08a4bd;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .blog-card-content p {
+      color: #555;
+      font-size: 0.95em;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .read-more {
+      display: inline-block;
+      color: #08a4bd;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
+    }
+
+    .full-content {
+      display: none;
+      margin-top: 15px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 60px;
+      background: #08a4bd;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <h1 class="logo">ReformPilates</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="hareketler.html">Hareketler</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="hakkinda.html">Hakkında</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="blog-title">Blog Yazıları</h2>
+    <p class="blog-intro">
+      Pilates ve sağlıklı yaşamla ilgili ipuçları, motivasyon yazıları ve uzman tavsiyelerini burada bulabilirsin.
+    </p>
+
+    <div class="blog-grid">
+      <div class="blog-card">
+        <img src="images/blog1.jpg" alt="Pilatesin Faydaları">
+        <div class="blog-card-content">
+          <h3>Pilatesin Faydaları</h3>
+          <p>Kısa özet: Pilates, yalnızca bedenini değil, zihnini de güçlendirir. Düzenli yapıldığında duruşu düzeltir, kasları güçlendirir.</p>
+          <a class="read-more">Devamını Oku →</a>
+          <div class="full-content">
+            Pilates, yalnızca bedenini değil, zihnini de güçlendirir. Düzenli yapıldığında duruşu düzeltir, kasları güçlendirir. Daha fazla detay için önerilen egzersizleri uygulayabilirsin ve günlük rutine ekleyebilirsin.
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <img src="images/blog2.jpg" alt="Evde Pilates Rehberi">
+        <div class="blog-card-content">
+          <h3>Evde Pilates Rehberi</h3>
+          <p>Kısa özet: Evinin rahatlığında pilates yapmak istiyorsan, basit ekipmanlarla başlayabileceğin etkili bir rehber seni bekliyor.</p>
+          <a class="read-more">Devamını Oku →</a>
+          <div class="full-content">
+            Evinin rahatlığında pilates yapmak istiyorsan, basit ekipmanlarla başlayabileceğin etkili bir rehber seni bekliyor. Başlangıç hareketleri ile adım adım ilerleyebilirsin. Düzenli uygulama ile esnekliğini ve gücünü artırabilirsin.
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <img src="images/blog3.jpg" alt="Duruş Düzeltme Teknikleri">
+        <div class="blog-card-content">
+          <h3>Duruş Düzeltme Teknikleri</h3>
+          <p>Kısa özet: Doğru duruş, sağlıklı bir omurga için temel şarttır. Günlük yaşamda dikkat edilmesi gereken noktaları keşfet!</p>
+          <a class="read-more">Devamını Oku →</a>
+          <div class="full-content">
+            Doğru duruş, sağlıklı bir omurga için temel şarttır. Günlük yaşamda dikkat edilmesi gereken noktaları keşfet ve doğru egzersizlerle omurga sağlığını koru. Bu teknikleri düzenli uygulamak sırt ağrılarını önler ve duruşunu geliştirir.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 ReformPilates. Tüm Hakları Saklıdır.</p>
+  </footer>
+
+<script src="scripts/script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const readMoreLinks = document.querySelectorAll(".read-more");
+
+  readMoreLinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+      e.preventDefault();
+      const fullContent = this.nextElementSibling;
+      if(fullContent.style.display === "block") {
+        fullContent.style.display = "none";
+        this.textContent = "Devamını Oku →";
+      } else {
+        fullContent.style.display = "block";
+        this.textContent = "Küçült ↑";
+        fullContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

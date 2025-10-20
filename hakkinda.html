@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hakkında | ReformPilates</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <style>
+    /* === NAVBAR === */
+    .navbar {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; /* index.html gibi sola hizalı */
+      padding: 15px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.4em;
+      font-weight: 600;
+      color: #08a4bd;
+    }
+
+    .navbar nav {
+      margin-left: 180px; /* index.html ile aynı hizalama */
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #08a4bd;
+    }
+
+    /* === SAYFA İÇERİĞİ === */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    main {
+      margin-top: 120px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+    }
+
+    main h1 {
+      color: #08a4bd;
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* ŞIK KART STİLİ */
+    .section {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      padding: 30px 25px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .section h2 {
+      font-size: 1.8em;
+      color: #ffffff;
+      background-color: #08a4bd;
+      padding: 10px 15px;
+      border-radius: 15px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .section p {
+      font-size: 1.05em;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    /* EKİP STİLİ */
+    .team-member {
+      background: #e0f0fa;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    .team-member h3 {
+      color: #08a4bd;
+      margin-bottom: 10px;
+    }
+
+    .team-member p {
+      color: #444;
+      font-size: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #fff;
+      background-color: #08a4bd;
+      font-size: 0.9rem;
+      margin-top: 50px;
+    }
+
+    /* MOBİL */
+    @media (max-width: 768px) {
+      main h1 {
+        font-size: 2em;
+      }
+      .section h2 {
+        font-size: 1.5em;
+      }
+      .navbar nav {
+        margin-left: 0;
+      }
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <h1 class="logo">ReformPilates</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="hareketler.html">Hareketler</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="hakkinda.html" class="active">Hakkında</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Hakkımızda</h1>
+
+    <div class="section">
+      <h2>Vizyonumuz</h2>
+      <p>
+        ReformPilates olarak amacımız, pilatesi herkes için erişilebilir kılmak ve sağlıklı yaşam kültürünü yaygınlaştırmak. İnsanların beden ve zihin dengelerini en üst düzeye çıkarmalarına yardımcı olmak istiyoruz.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Misyonumuz</h2>
+      <p>
+        Müşterilerimize güvenli, etkili ve keyifli pilates deneyimleri sunmak. Her seviyeye uygun eğitim programları ve rehberlik ile bireylerin sağlık ve esneklik hedeflerine ulaşmalarını sağlamak.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Değerlerimiz</h2>
+      <p>
+        <strong>Profesyonellik:</strong> Eğitim ve hizmetlerimizde yüksek standartlar.<br>
+        <strong>Empati:</strong> Her bireyin ihtiyaçlarına uygun yaklaşım.<br>
+        <strong>Sürdürülebilirlik:</strong> Sağlıklı yaşam alışkanlıklarını desteklemek.<br>
+        <strong>Topluluk:</strong> İnsanları pilates ile bir araya getiren samimi ortam.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Ekibimiz</h2>
+      <div class="team-member">
+        <h3>Ahmet Yılmaz</h3>
+        <p>Baş Eğitmen – Her seviyeye uygun rehberlik ve kişisel antrenman planları sunar.</p>
+      </div>
+      <div class="team-member">
+        <h3>Elif Kaya</h3>
+        <p>Pilates Eğitmeni – Katılımcıların güvenle ilerlemesini sağlar.</p>
+      </div>
+      <div class="team-member">
+        <h3>Deniz Arslan</h3>
+        <p>Pilates Eğitmeni – Grup ve bireysel derslerde deneyimli.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 ReformPilates. Tüm Hakları Saklıdır.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
