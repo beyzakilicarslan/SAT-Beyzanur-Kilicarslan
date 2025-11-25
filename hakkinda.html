@@ -16,7 +16,7 @@
       backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
-      justify-content: flex-start; /* index.html gibi sola hizalı */
+      justify-content: flex-start;
       padding: 15px 40px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       z-index: 100;
@@ -29,7 +29,7 @@
     }
 
     .navbar nav {
-      margin-left: 180px; /* index.html ile aynı hizalama */
+      margin-left: 180px;
     }
 
     nav ul {
@@ -77,7 +77,7 @@
       margin-bottom: 40px;
     }
 
-    /* ŞIK KART STİLİ */
+    /* Kart Stili */
     .section {
       background: #ffffff;
       border-radius: 20px;
@@ -108,7 +108,7 @@
       line-height: 1.7;
     }
 
-    /* EKİP STİLİ */
+    /* Ekip Stili */
     .team-member {
       background: #e0f0fa;
       border-radius: 15px;
@@ -132,7 +132,6 @@
       font-size: 1rem;
     }
 
-    /* FOOTER */
     footer {
       text-align: center;
       padding: 20px;
@@ -142,7 +141,7 @@
       margin-top: 50px;
     }
 
-    /* MOBİL */
+    /* Mobil */
     @media (max-width: 768px) {
       main h1 {
         font-size: 2em;
@@ -160,7 +159,9 @@
     }
   </style>
 </head>
+
 <body>
+
   <header class="navbar">
     <h1 class="logo">ReformPilates</h1>
     <nav>
@@ -174,53 +175,136 @@
   </header>
 
   <main>
+
     <h1>Hakkımızda</h1>
 
+    <!-- Vizyon -->
     <div class="section">
       <h2>Vizyonumuz</h2>
       <p>
-        ReformPilates olarak amacımız, pilatesi herkes için erişilebilir kılmak ve sağlıklı yaşam kültürünü yaygınlaştırmak. İnsanların beden ve zihin dengelerini en üst düzeye çıkarmalarına yardımcı olmak istiyoruz.
+        ReformPilates olarak vizyonumuz, beden farkındalığını artıran ve insanların zihinsel-fiziksel güçlerini keşfetmelerini sağlayan sürdürülebilir bir yaşam kültürü oluşturmak.
+        Türkiye’de pilatesi bilimsel temellerle öğreterek herkes için ulaşılabilir hâle getirmeyi hedefliyoruz.
+      </p>
+      <p>
+        Gelecekte yalnızca bir spor merkezi değil; insanların kendilerini yenilediği, geliştiği ve sağlıklı yaşamı alışkanlık hâline getirdiği bir topluluk merkezi olmayı amaçlıyoruz.
       </p>
     </div>
 
+    <!-- Misyon -->
     <div class="section">
       <h2>Misyonumuz</h2>
       <p>
-        Müşterilerimize güvenli, etkili ve keyifli pilates deneyimleri sunmak. Her seviyeye uygun eğitim programları ve rehberlik ile bireylerin sağlık ve esneklik hedeflerine ulaşmalarını sağlamak.
+        Misyonumuz, pilatesi güvenli, keyifli ve kişiye özel bir deneyim hâline getirmek. Modern ekipmanlar, uzman eğitmenler ve farklı seviye programlarıyla her katılımcının ihtiyaçlarına uygun bir süreç sunuyoruz.
+      </p>
+      <p>
+        Amacımız insanlara sadece spor yaptırmak değil; sağlıklı yaşamı sürdürülebilir bir alışkanlık hâline getirmek.
       </p>
     </div>
 
+    <!-- Hikayemiz -->
+    <div class="section">
+      <h2>Hikayemiz</h2>
+      <p>
+        ReformPilates, 2018 yılında “herkes için kaliteli pilates” vizyonuyla kuruldu. İlk stüdyomuzu açtığımız günden bugüne, binlerce kişinin yaşamına dokunarak güçlü bir topluluk oluşturduk.
+      </p>
+      <p>
+        Kuruluşumuzdan bu yana:
+        <br>✔ 10.000+ ders
+        <br>✔ 2.000+ mutlu katılımcı
+        <br>✔ 3.000+ kişiye özel program
+        hazırladık.
+      </p>
+      <p>
+        Bugün hâlâ aynı heyecanla insanların daha sağlıklı, dengeli ve güçlü bir bedene kavuşmaları için çalışıyoruz.
+      </p>
+    </div>
+
+    <!-- Eğitim Yaklaşımı -->
+    <div class="section">
+      <h2>Eğitim Yaklaşımımız</h2>
+      <p>
+        Tüm derslerimiz bilimsel eğitim metotlarına dayanır. Kişiye özel programlar oluştururken:
+        <br>🔹 Postür analizi
+        <br>🔹 Nefes teknikleri
+        <br>🔹 Seviye belirleme
+        <br>🔹 Hareket kapasitesi ölçümü
+        gibi yöntemler kullanıyoruz.
+      </p>
+      <p>
+        Eğitimlerde Reformer, Cadillac, Chair, Barrel ve Mat Pilates gibi farklı ekipmanlar kullanarak çeşitlendirilmiş bir egzersiz deneyimi sunuyoruz.
+      </p>
+    </div>
+
+    <!-- Değerlerimiz -->
     <div class="section">
       <h2>Değerlerimiz</h2>
       <p>
-        <strong>Profesyonellik:</strong> Eğitim ve hizmetlerimizde yüksek standartlar.<br>
-        <strong>Empati:</strong> Her bireyin ihtiyaçlarına uygun yaklaşım.<br>
-        <strong>Sürdürülebilirlik:</strong> Sağlıklı yaşam alışkanlıklarını desteklemek.<br>
-        <strong>Topluluk:</strong> İnsanları pilates ile bir araya getiren samimi ortam.
+        <strong>Profesyonellik:</strong> Eğitmenlerimiz sürekli eğitim alarak en güncel teknikleri uygular.<br>
+        <strong>Empati:</strong> Her bireyin ihtiyacına özel yaklaşım sunarız.<br>
+        <strong>Sürdürülebilirlik:</strong> Sağlıklı yaşam kültürünü uzun vadeli hedeflerle destekleriz.<br>
+        <strong>Topluluk:</strong> İnsanları bir araya getiren samimi bir ortam oluştururuz.
       </p>
     </div>
 
+    <!-- Ekibimiz -->
     <div class="section">
       <h2>Ekibimiz</h2>
+
       <div class="team-member">
         <h3>Ahmet Yılmaz</h3>
-        <p>Baş Eğitmen – Her seviyeye uygun rehberlik ve kişisel antrenman planları sunar.</p>
+        <p>Baş Eğitmen – 10+ yıl deneyim. Bireysel ve grup derslerinde uzman, omurga sağlığı üzerine çalışır.</p>
       </div>
+
       <div class="team-member">
         <h3>Elif Kaya</h3>
-        <p>Pilates Eğitmeni – Katılımcıların güvenle ilerlemesini sağlar.</p>
+        <p>Kıdemli Pilates Eğitmeni – Nefes teknikleri ve hareket analizi üzerine uzmanlaşmıştır.</p>
       </div>
+
       <div class="team-member">
         <h3>Deniz Arslan</h3>
-        <p>Pilates Eğitmeni – Grup ve bireysel derslerde deneyimli.</p>
+        <p>Grup Dersleri Eğitmeni – Enerjik dersleriyle tanınır, her seviyeye uygun yönlendirme sağlar.</p>
       </div>
+
+      <div class="team-member">
+        <h3>Melis Özdemir</h3>
+        <p>Fizyoterapist & Pilates Eğitmeni – Klinik pilates, omurga bozuklukları ve rehabilitasyon üzerine uzman.</p>
+      </div>
+
     </div>
+
+    <!-- Hizmetler -->
+    <div class="section">
+      <h2>Sunduğumuz Hizmetler</h2>
+      <p>
+        ✔ Reformer Pilates<br>
+        ✔ Mat Pilates<br>
+        ✔ Klinik Pilates<br>
+        ✔ Doğum Öncesi/Sonrası Pilates<br>
+        ✔ Sporcu Destek Programları<br>
+        ✔ Postür Analizi<br>
+        ✔ Kişiye Özel Ders Programları<br>
+        ✔ Grup Dersleri
+      </p>
+    </div>
+
+    <!-- Neden Biz? -->
+    <div class="section">
+      <h2>Neden Bizi Tercih Etmelisiniz?</h2>
+      <p>
+        – Sertifikalı uzman eğitmenler<br>
+        – Kişiye özel programlar<br>
+        – Modern ve hijyenik stüdyo<br>
+        – Sınırlı kontenjanlı kaliteli dersler<br>
+        – Güçlü bir topluluk ortamı<br>
+        – Motivasyon ve sürdürülebilir gelişim
+      </p>
+    </div>
+
   </main>
 
   <footer>
     <p>© 2025 ReformPilates. Tüm Hakları Saklıdır.</p>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
