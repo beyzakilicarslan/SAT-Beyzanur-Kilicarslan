@@ -3,308 +3,1234 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hakkında | ReformPilates</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <title>Hakkımızda | ReformPilates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+  
   <style>
-    /* === NAVBAR === */
+    :root {
+      --primary: #08a4bd;
+      --primary-dark: #068da1;
+      --dark: #1a1a1a;
+      --light: #f8f9fa;
+      --text-gray: #555;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background-color: #fff;
+      line-height: 1.6;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+    }
+
     .navbar {
       position: fixed;
       width: 100%;
       top: 0;
       left: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+      height: 70px;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 0 5%;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: flex-start;
-      padding: 15px 40px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      z-index: 1000;
     }
-
-    .logo {
-      font-size: 1.4em;
-      font-weight: 600;
-      color: #08a4bd;
+    .logo { 
+      font-size: 1.6rem; 
+      font-weight: 700; 
+      color: var(--dark); 
+      text-decoration: none;
+      white-space: nowrap;
     }
-
-    .navbar nav {
-      margin-left: 180px;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 30px;
+    .logo span { color: var(--primary); }
+    .nav-links { 
+      display: flex; 
+      gap: 25px; 
       list-style: none;
       margin: 0;
       padding: 0;
     }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: 0.3s;
+    .nav-links a { 
+      text-decoration: none; 
+      color: var(--dark); 
+      font-weight: 500; 
+      text-transform: uppercase; 
+      font-size: 0.9rem; 
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+      padding: 5px 0;
+    }
+    .nav-links a:hover, .nav-links a.active { 
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
     }
 
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: #08a4bd;
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+      z-index: 1001;
     }
 
-    /* === SAYFA İÇERİĞİ === */
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f0f4f8;
-      margin: 0;
-      padding: 0;
-      color: #222;
-      line-height: 1.6;
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--dark);
+      border-radius: 2px;
+      transition: all 0.3s ease;
     }
 
-    main {
-      margin-top: 120px;
-      max-width: 1000px;
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(10px, 10px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .about-hero {
+      position: relative;
+      min-height: 85vh;
+      background: url('images/pilates2.jpg') center/cover no-repeat;
+      padding: 100px 5% 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-text {
+      color: white;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 25px;
+      letter-spacing: -1px;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-text p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      font-weight: 300;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
-      padding: 20px;
     }
 
-    main h1 {
-      color: #08a4bd;
-      font-size: 2.5em;
-      text-align: center;
-      margin-bottom: 40px;
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    /* Kart Stili */
-    .section {
-      background: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      padding: 30px 25px;
-      margin-bottom: 30px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    }
-
-    .section h2 {
-      font-size: 1.8em;
-      color: #ffffff;
-      background-color: #08a4bd;
-      padding: 10px 15px;
-      border-radius: 15px;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-
-    .section p {
-      font-size: 1.05em;
-      color: #333;
-      line-height: 1.7;
-    }
-
-    /* Ekip Stili */
-    .team-member {
-      background: #e0f0fa;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .team-member:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    }
-
-    .team-member h3 {
-      color: #08a4bd;
-      margin-bottom: 10px;
-    }
-
-    .team-member p {
-      color: #444;
+    .btn-primary-hero {
+      padding: 16px 40px;
+      background: white;
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
       font-size: 1rem;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #fff;
-      background-color: #08a4bd;
-      font-size: 0.9rem;
-      margin-top: 50px;
+    .btn-primary-hero:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
     }
 
-    /* Mobil */
+    .btn-secondary-hero {
+      padding: 16px 40px;
+      background: transparent;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      border: 2px solid white;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .btn-secondary-hero:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .story-section {
+      padding: 80px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+    }
+    .story-img { flex: 1; min-width: 300px; position: relative; }
+    .story-img img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    
+    .story-text { flex: 1; min-width: 300px; }
+    .story-text h2 { font-size: 2.2rem; margin-bottom: 25px; font-weight: 600; }
+    .story-text p { margin-bottom: 18px; font-size: 1rem; line-height: 1.7; }
+    
+    .highlight { color: var(--primary); font-weight: 600; }
+
+    .anka-pilates-section {
+      padding: 100px 5%;
+      background: linear-gradient(to bottom, #fff, #f8f9fa);
+    }
+
+    .anka-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .anka-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .anka-intro {
+      font-size: 1.1rem;
+      color: var(--text-gray);
+      max-width: 800px;
+      margin: 20px auto 0;
+      line-height: 1.7;
+    }
+
+    .anka-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .anka-info-card {
+      background: white;
+      padding: 35px 25px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #f0f0f0;
+    }
+
+    .anka-info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(8, 164, 189, 0.15);
+    }
+
+    .anka-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .anka-info-card h3 {
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .anka-info-card p {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .anka-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .gallery-item {
+      position: relative;
+      height: 300px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 25px;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay p {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .anka-location {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .location-info h3 {
+      font-size: 1.8rem;
+      color: var(--dark);
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .location-info p {
+      font-size: 1rem;
+      color: var(--text-gray);
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .location-info strong {
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .anka-social {
+      margin-top: 30px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 30px;
+      background: linear-gradient(135deg, #08a4bd, #068da1);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(8, 164, 189, 0.3);
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(8, 164, 189, 0.4);
+    }
+
+    .social-link span {
+      font-size: 1.3rem;
+    }
+
+    .stats-section {
+      background: white;
+      color: var(--dark);
+      padding: 60px 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .stat-item { padding: 25px; }
+    .stat-number { font-size: 2.8rem; font-weight: 700; color: var(--primary); display: block; font-family: 'Playfair Display', serif; margin-bottom: 8px; }
+    .stat-label { font-size: 0.95rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+
+    .team-section {
+      padding: 80px 5%;
+      background: white;
+      text-align: center;
+    }
+    .section-title { font-size: 2.2rem; margin-bottom: 50px; display: block; font-weight: 600; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      border: 1px solid #f5f5f5;
+    }
+    .team-card:hover { 
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(8, 164, 189, 0.1);
+    }
+
+    .team-img-wrapper {
+      height: 240px;
+      overflow: hidden;
+      position: relative;
+    }
+    .team-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .team-card:hover .team-img-wrapper img { transform: scale(1.05); }
+
+    .social-overlay {
+      position: absolute;
+      bottom: -50px;
+      left: 0; right: 0;
+      background: rgba(255,255,255,0.9);
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      transition: bottom 0.3s ease;
+    }
+    .team-card:hover .social-overlay { bottom: 0; }
+
+    .social-icon { color: var(--dark); font-size: 1.2rem; cursor: pointer; transition: color 0.3s; text-decoration: none; }
+    .social-icon:hover { color: var(--primary); }
+
+    .team-info { padding: 16px; text-align: center; }
+    .team-info h3 { margin-bottom: 4px; font-size: 1.1rem; font-weight: 600; }
+    .team-role { color: var(--primary); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 6px; display: block; letter-spacing: 0.5px; }
+    .team-info p { font-size: 0.82rem; color: var(--text-gray); line-height: 1.4; }
+
+    .features-section {
+      padding: 80px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      background: white;
+    }
+    .features-section .section-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 50px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .feature-box {
+      padding: 28px 22px;
+      border: 1px solid #f5f5f5;
+      border-radius: 12px;
+      background: white;
+      transition: all 0.3s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .feature-box:hover { 
+      border-color: var(--primary);
+      box-shadow: 0 8px 20px rgba(8, 164, 189, 0.1);
+      transform: translateY(-4px);
+    }
+    .f-icon { font-size: 2.4rem; margin-bottom: 10px; display: block; }
+    .feature-box h4 { font-size: 1rem; margin-bottom: 8px; font-weight: 600; }
+    .feature-box p { font-size: 0.88rem; line-height: 1.6; color: var(--text-gray); }
+    footer {
+      background: #1a1a1a;
+      color: var(--text-gray);
+      padding: 40px 5%;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    footer h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mission-vision-section {
+      padding: 80px 5%;
+      background: white;
+    }
+
+    .mvv-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .mvv-card {
+      background: white;
+      padding: 32px 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid #f5f5f5;
+      border-top: 4px solid var(--primary);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mvv-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--primary);
+    }
+
+    .mvv-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 24px rgba(8, 164, 189, 0.12);
+    }
+
+    .mvv-icon {
+      font-size: 2.6rem;
+      margin-bottom: 14px;
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(8, 164, 189, 0.1) 0%, rgba(8, 164, 189, 0.05) 100%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mvv-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .mvv-card p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-gray);
+      margin: 0;
+    }
+
+    .testimonials-section {
+      padding: 80px 5%;
+      background: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .testimonials-section .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 50px;
+      font-weight: 600;
+    }
+
+    .testimonials-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonials-grid {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px 0;
+      flex: 1;
+    }
+
+    .testimonials-grid::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .testimonials-grid::-webkit-scrollbar-track {
+      background: #f0f0f0;
+      border-radius: 10px;
+    }
+
+    .testimonials-grid::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+
+    .testimonials-grid::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+    }
+
+    .scroll-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(8, 164, 189, 0.3);
+    }
+
+    .scroll-btn:hover {
+      background: var(--primary-dark);
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(8, 164, 189, 0.4);
+    }
+
+    .scroll-btn:active {
+      transform: scale(0.95);
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 24px 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+      border: 1px solid #f5f5f5;
+      border-left: 4px solid var(--primary);
+      position: relative;
+      animation: slideInUp 0.6s ease-out forwards;
+      opacity: 0;
+      flex: 0 0 320px;
+      min-width: 320px;
+    }
+
+    .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+    .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+    .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+    .testimonial-card:nth-child(4) { animation-delay: 0.4s; }
+    .testimonial-card:nth-child(5) { animation-delay: 0.5s; }
+    .testimonial-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(8, 164, 189, 0.1);
+    }
+
+    .stars {
+      color: #ffc107;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      letter-spacing: 1.2px;
+    }
+
+    .testimonial-text {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      margin-bottom: 14px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 0.88rem;
+      margin-bottom: 3px;
+    }
+
+    .testimonial-role {
+      color: var(--primary);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
     @media (max-width: 768px) {
-      main h1 {
-        font-size: 2em;
+      .navbar {
+        height: 60px;
+        padding: 0 4%;
       }
-      .section h2 {
-        font-size: 1.5em;
+
+      .logo {
+        font-size: 1.3rem;
       }
-      .navbar nav {
-        margin-left: 0;
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        padding: 0;
       }
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
+
+      .nav-links.active {
+        max-height: 500px;
+        padding: 15px 0;
+      }
+
+      .nav-links li {
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 15px 20px;
+        font-size: 0.85rem;
+        border-bottom: none;
+      }
+
+      .nav-links a:hover, .nav-links a.active {
+        background-color: #f8f9fa;
+        border-bottom: none;
+        color: var(--primary);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-primary-hero,
+      .btn-secondary-hero {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+      }
+
+      .story-section {
+        flex-direction: column;
+        gap: 30px;
+        padding: 60px 5%;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .features-grid {
+        gap: 20px;
+      }
+
+      .feature-box {
+        min-width: 200px;
+        padding: 20px;
+      }
+
+      .mvv-container {
+        gap: 20px;
+      }
+
+      .testimonials-grid {
+        gap: 20px;
+      }
+
+      .scroll-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.1rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-text p {
+        font-size: 0.95rem;
+      }
+
+      .story-section {
+        padding: 40px 5%;
+      }
+
+      .story-text h2 {
+        font-size: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mvv-card {
+        padding: 25px 20px;
+      }
+
+      .testimonial-card {
+        padding: 25px 20px;
+      }
+
+      .anka-pilates-section {
+        padding: 60px 5%;
+      }
+
+      .anka-info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .anka-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .anka-location {
+        padding: 30px 20px;
+      }
+
+      .location-info h3 {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
-
 <body>
 
-  <header class="navbar">
-    <h1 class="logo">ReformPilates</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="hareketler.html">Hareketler</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="hakkinda.html" class="active">Hakkında</a></li>
-      </ul>
-    </nav>
+  <nav class="navbar">
+    <a href="index.html" class="logo">Reform<span>Pilates</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="hareketler.html">Hareketler</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="hakkinda.html" class="active">Hakkında</a></li>
+      <li><a href="iletişim.html">İletişim</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <header class="about-hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>ReformPilates Hakkında</h1>
+        <p>Bilim temelli yaklaşımımızla her yaştan ve seviyeden bireye özel programlar sunuyoruz. Duruş bozukluklarından kurtulun, güçlenin ve yaşam kalitenizi artırın.</p>
+        <div class="hero-buttons">
+          <a href="hareketler.html" class="btn-primary-hero">Hareketleri Keşfet</a>
+          <a href="iletişim.html" class="btn-secondary-hero">İletişime Geç</a>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <main>
-
-    <h1>Hakkımızda</h1>
-
-    <!-- Vizyon -->
-    <div class="section">
-      <h2>Vizyonumuz</h2>
-      <p>
-        ReformPilates olarak vizyonumuz, beden farkındalığını artıran ve insanların zihinsel-fiziksel güçlerini keşfetmelerini sağlayan sürdürülebilir bir yaşam kültürü oluşturmak.
-        Türkiye’de pilatesi bilimsel temellerle öğreterek herkes için ulaşılabilir hâle getirmeyi hedefliyoruz.
-      </p>
-      <p>
-        Gelecekte yalnızca bir spor merkezi değil; insanların kendilerini yenilediği, geliştiği ve sağlıklı yaşamı alışkanlık hâline getirdiği bir topluluk merkezi olmayı amaçlıyoruz.
-      </p>
+  <section class="stats-section">
+    <div class="stat-item">
+      <span class="stat-number">2018</span>
+      <span class="stat-label">Kuruluş</span>
     </div>
-
-    <!-- Misyon -->
-    <div class="section">
-      <h2>Misyonumuz</h2>
-      <p>
-        Misyonumuz, pilatesi güvenli, keyifli ve kişiye özel bir deneyim hâline getirmek. Modern ekipmanlar, uzman eğitmenler ve farklı seviye programlarıyla her katılımcının ihtiyaçlarına uygun bir süreç sunuyoruz.
-      </p>
-      <p>
-        Amacımız insanlara sadece spor yaptırmak değil; sağlıklı yaşamı sürdürülebilir bir alışkanlık hâline getirmek.
-      </p>
+    <div class="stat-item">
+      <span class="stat-number">1500+</span>
+      <span class="stat-label">Tamamlanan Seans</span>
     </div>
-
-    <!-- Hikayemiz -->
-    <div class="section">
-      <h2>Hikayemiz</h2>
-      <p>
-        ReformPilates, 2018 yılında “herkes için kaliteli pilates” vizyonuyla kuruldu. İlk stüdyomuzu açtığımız günden bugüne, binlerce kişinin yaşamına dokunarak güçlü bir topluluk oluşturduk.
-      </p>
-      <p>
-        Kuruluşumuzdan bu yana:
-        <br>✔ 10.000+ ders
-        <br>✔ 2.000+ mutlu katılımcı
-        <br>✔ 3.000+ kişiye özel program
-        hazırladık.
-      </p>
-      <p>
-        Bugün hâlâ aynı heyecanla insanların daha sağlıklı, dengeli ve güçlü bir bedene kavuşmaları için çalışıyoruz.
-      </p>
+    <div class="stat-item">
+      <span class="stat-number">8</span>
+      <span class="stat-label">Uzman Eğitmen</span>
     </div>
-
-    <!-- Eğitim Yaklaşımı -->
-    <div class="section">
-      <h2>Eğitim Yaklaşımımız</h2>
-      <p>
-        Tüm derslerimiz bilimsel eğitim metotlarına dayanır. Kişiye özel programlar oluştururken:
-        <br>🔹 Postür analizi
-        <br>🔹 Nefes teknikleri
-        <br>🔹 Seviye belirleme
-        <br>🔹 Hareket kapasitesi ölçümü
-        gibi yöntemler kullanıyoruz.
-      </p>
-      <p>
-        Eğitimlerde Reformer, Cadillac, Chair, Barrel ve Mat Pilates gibi farklı ekipmanlar kullanarak çeşitlendirilmiş bir egzersiz deneyimi sunuyoruz.
-      </p>
+    <div class="stat-item">
+      <span class="stat-number">18</span>
+      <span class="stat-label">Program Türü</span>
     </div>
+  </section>
 
-    <!-- Değerlerimiz -->
-    <div class="section">
-      <h2>Değerlerimiz</h2>
-      <p>
-        <strong>Profesyonellik:</strong> Eğitmenlerimiz sürekli eğitim alarak en güncel teknikleri uygular.<br>
-        <strong>Empati:</strong> Her bireyin ihtiyacına özel yaklaşım sunarız.<br>
-        <strong>Sürdürülebilirlik:</strong> Sağlıklı yaşam kültürünü uzun vadeli hedeflerle destekleriz.<br>
-        <strong>Topluluk:</strong> İnsanları bir araya getiren samimi bir ortam oluştururuz.
-      </p>
+  <section class="story-section">
+    <div class="story-img">
+      <img src="images/pilates2.jpg" alt="Stüdyo">
     </div>
+    <div class="story-text">
+      <h2>Bilim Temelli, İnsan Odaklı</h2>
+      <p>ReformPilates; fizyoterapistler, hareket uzmanları ve deneyimli eğitmenlerin bir araya gelmesiyle kuruldu. Amacımız, herkesin güvenli şekilde hareket edebileceği, ölçülebilir ilerleme sunan bir stüdyo yaratmak.</p>
+      <p>Klasik pilates metodunu güncel biyomekanik bilgilerle harmanlıyor, her seansı beden tipine, hedefe ve sağlık geçmişine göre kişiselleştiriyoruz. Ağrısız, dengeli ve güçlü bir yaşam için net bir yol haritası çiziyoruz.</p>
+      <p>Butik kapasitemiz sayesinde kalabalıktan uzak, sakin ve tamamen size ayrılmış bir deneyim sunuyoruz.</p>
+    </div>
+  </section>
 
-    <!-- Ekibimiz -->
-    <div class="section">
-      <h2>Ekibimiz</h2>
-
-      <div class="team-member">
-        <h3>Ahmet Yılmaz</h3>
-        <p>Baş Eğitmen – 10+ yıl deneyim. Bireysel ve grup derslerinde uzman, omurga sağlığı üzerine çalışır.</p>
+  <section class="anka-pilates-section">
+    <div class="anka-container">
+      <div class="anka-header">
+        <h2 class="section-title">Anka Pilates
+        
+        </h2>
+        <p class="anka-intro">Ankara'nın önde gelen pilates stüdyosu Anka Pilates ile güçlü bir iş birliği içindeyiz. Modern ekipmanlar ve uzman eğitmen kadrosuyla hizmet veren Anka Pilates, sağlıklı yaşam yolculuğunuzda yanınızda.</p>
       </div>
 
-      <div class="team-member">
-        <h3>Elif Kaya</h3>
-        <p>Kıdemli Pilates Eğitmeni – Nefes teknikleri ve hareket analizi üzerine uzmanlaşmıştır.</p>
+      <div class="anka-content">
+        <div class="anka-info-grid">
+          <div class="anka-info-card">
+            <div class="anka-icon">🏢</div>
+            <h3>Modern Stüdyo</h3>
+            <p>150 m² genişliğindeki modern stüdyomuzda, birinci sınıf reformer makineleri ve ekipmanlarla çalışıyoruz.</p>
+          </div>
+          <div class="anka-info-card">
+            <div class="anka-icon">🎯</div>
+            <h3>Çeşitli Programlar</h3>
+            <p>Reformer Pilates, Mat Pilates, Yoga, Fonksiyonel Fitness, Spinning ve Zumba gibi geniş bir ders yelpazesi sunuyoruz.</p>
+          </div>
+          <div class="anka-info-card">
+            <div class="anka-icon">👥</div>
+            <h3>Uzman Eğitmenler</h3>
+            <p>Profesyonel eğitmen kadromuz, başlangıç seviyesinden ileri seviyeye kadar herkese uygun programlar hazırlıyor.</p>
+          </div>
+          <div class="anka-info-card">
+            <div class="anka-icon">💚</div>
+            <h3>Kişiselleştirilmiş Yaklaşım</h3>
+            <p>Her bireyin ihtiyacına göre özel seanslar ve grup dersleriyle bütünsel bir fitness deneyimi sunuyoruz.</p>
+          </div>
+        </div>
+
+        <div class="anka-gallery">
+          <div class="gallery-item">
+            <img src="images/pilates2.jpg" alt="Anka Pilates Stüdyo">
+            <div class="gallery-overlay">
+              <p>Modern Reformer Ekipmanları</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="images/pilates4.jpg" alt="Anka Pilates Ders">
+            <div class="gallery-overlay">
+              <p>Profesyonel Eğitmen Eşliğinde Dersler</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600" alt="Anka Pilates Grup Dersi">
+            <div class="gallery-overlay">
+              <p>Grup Dersleri ve Sosyal Etkileşim</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="anka-location">
+          <div class="location-info">
+            <h3>📍 Konumumuz</h3>
+            <p><strong>Adres:</strong> Örencik Mahallesi, 3818. Sokak No:13/B<br>Gölbaşı / Ankara</p>
+            <p><strong>Sloganımız:</strong> "Sizin Yeni Versiyonunuz"</p>
+            <p>Zindeliğin lüksle buluştuğu, sağlığın ön planda olduğu bir deneyim için bizi ziyaret edin.</p>
+            <div class="anka-social">
+              <a href="https://www.instagram.com/anka.pilatess/" target="_blank" class="social-link">
+                <span>📷</span> Instagram'da Takip Edin
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <h2 class="section-title">Uzman Kadromuz</h2>
+    <div class="team-grid">
+      
+      <div class="team-card">
+        <div class="team-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=600&auto=format&fit=crop" alt="Elif Kaya">
+          <div class="social-overlay">
+            <a href="#" class="social-icon">Instagram</a>
+            <a href="#" class="social-icon">LinkedIn</a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Elif Kaya</h3>
+          <span class="team-role">Kurucu & Baş Eğitmen</span>
+          <p>10 yıllık tecrübesiyle klinik pilates ve omurga sağlığı üzerine uzmanlaşmıştır.</p>
+        </div>
       </div>
 
-      <div class="team-member">
-        <h3>Deniz Arslan</h3>
-        <p>Grup Dersleri Eğitmeni – Enerjik dersleriyle tanınır, her seviyeye uygun yönlendirme sağlar.</p>
+      <div class="team-card">
+        <div class="team-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&w=600&auto=format&fit=crop" alt="Mert Demir">
+          <div class="social-overlay">
+            <a href="#" class="social-icon">Instagram</a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Mert Demir</h3>
+          <span class="team-role">Reformer Eğitmeni</span>
+          <p>Sporcu geçmişiyle dinamik ve güç odaklı derslerin vazgeçilmez ismidir.</p>
+        </div>
       </div>
 
-      <div class="team-member">
-        <h3>Melis Özdemir</h3>
-        <p>Fizyoterapist & Pilates Eğitmeni – Klinik pilates, omurga bozuklukları ve rehabilitasyon üzerine uzman.</p>
+      <div class="team-card">
+        <div class="team-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop" alt="Selin Yılmaz">
+          <div class="social-overlay">
+            <a href="#" class="social-icon">Instagram</a>
+            <a href="#" class="social-icon">Mail</a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Selin Yılmaz</h3>
+          <span class="team-role">Hamile Pilatesi Uzmanı</span>
+          <p>Doğum öncesi ve sonrası kadın sağlığı üzerine sertifikalı programlar yürütür.</p>
+        </div>
       </div>
 
-    </div>
+      <div class="team-card">
+        <div class="team-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=600&auto=format&fit=crop" alt="Asya Ergül">
+          <div class="social-overlay">
+            <a href="https://www.instagram.com/anka.pilatess/" target="_blank" class="social-icon">Instagram</a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Asya Ergül</h3>
+          <span class="team-role">Eğitmen & Anka Pilates Kurucusu</span>
+          <p>Ankara Üniversitesi BESYO mezunu. Kendi markası Anka Pilates ile sektörde fark yaratan, tecrübeli bir eğitmen.</p>
+        </div>
+      </div>
+      </div>
+  </section>
 
-    <!-- Hizmetler -->
-    <div class="section">
-      <h2>Sunduğumuz Hizmetler</h2>
-      <p>
-        ✔ Reformer Pilates<br>
-        ✔ Mat Pilates<br>
-        ✔ Klinik Pilates<br>
-        ✔ Doğum Öncesi/Sonrası Pilates<br>
-        ✔ Sporcu Destek Programları<br>
-        ✔ Postür Analizi<br>
-        ✔ Kişiye Özel Ders Programları<br>
-        ✔ Grup Dersleri
-      </p>
+  <section class="features-section">
+    <h2 class="section-title" style="font-size: 2rem;">Farkımız Nedir?</h2>
+    <div class="features-grid">
+      <div class="feature-box">
+        <span class="f-icon">🌿</span>
+        <h4>Hijyenik ve Ferah Stüdyo</h4>
+        <p>Doğal ışık alan, havalandırması güçlü, butik kapasite ile konforlu ders deneyimi.</p>
+      </div>
+      <div class="feature-box">
+        <span class="f-icon">🎓</span>
+        <h4>Akademik Kadro</h4>
+        <p>Uluslararası sertifikalı eğitmenler ve fizyoterapistlerden oluşan ekip.</p>
+      </div>
+      <div class="feature-box">
+        <span class="f-icon">🤝</span>
+        <h4>Kişisel Takip & Rapor</h4>
+        <p>Başlangıç değerlendirmesi, aylık ölçümler ve görünür ilerleme raporları.</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Neden Biz? -->
-    <div class="section">
-      <h2>Neden Bizi Tercih Etmelisiniz?</h2>
-      <p>
-        – Sertifikalı uzman eğitmenler<br>
-        – Kişiye özel programlar<br>
-        – Modern ve hijyenik stüdyo<br>
-        – Sınırlı kontenjanlı kaliteli dersler<br>
-        – Güçlü bir topluluk ortamı<br>
-        – Motivasyon ve sürdürülebilir gelişim
-      </p>
+  <section class="mission-vision-section">
+    <div class="mvv-container">
+      <div class="mvv-card">
+        <div class="mvv-icon">🎯</div>
+        <h3>Misyonumuz</h3>
+        <p>Herkesin güvenli, sürdürülebilir ve keyifli bir şekilde hareket etmesini sağlamak; ağrısız, güçlü ve özgüvenli bir beden için rehberlik etmek.</p>
+      </div>
+
+      <div class="mvv-card">
+        <div class="mvv-icon">✨</div>
+        <h3>Vizyonumuz</h3>
+        <p>Türkiye’nin en güvenilir ve erişilebilir pilates stüdyosu olmak; veriye dayalı ilerleme ve kişiselleştirilmiş programlarla fark yaratmak.</p>
+      </div>
+
+      <div class="mvv-card">
+        <div class="mvv-icon">💚</div>
+        <h3>Değerlerimiz</h3>
+        <p><strong>Güvenlik:</strong> Teknik doğruluk öncelikli • <strong>Empati:</strong> Her beden farklı ve değerli • <strong>Şeffaflık:</strong> Açık iletişim ve net hedefler • <strong>Gelişim:</strong> Sürekli öğrenme ve ölçülebilir ilerleme</p>
+      </div>
     </div>
+  </section>
 
-  </main>
+  <section class="testimonials-section">
+    <h2 class="section-title">Öğrencilerimiz Neler Söylüyor?</h2>
+    
+    <div class="testimonials-wrapper">
+      <button class="scroll-btn" id="scrollLeftBtn">❮</button>
+      <div class="testimonials-grid" id="testimonialsGrid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">“3 ayda bel ağrılarım bitti, duruşum düzeldi. Her ders öncesi ölçüm yapılması motivasyonumu artırıyor.”</p>
+          <div class="testimonial-author">Ayşe Kaya</div>
+          <div class="testimonial-role">3 Aylık Öğrenci</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">“Sporcu olmama rağmen core kontrolümü burada öğrendim. Programlar net, tempo yüksek, sonuç hızlı.”</p>
+          <div class="testimonial-author">Emre Demir</div>
+          <div class="testimonial-role">Triatlon Sporcusu</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">“Hamilelikte özel programla güvenli çalıştım, doğum sonrası toparlanmam çok hızlandı.”</p>
+          <div class="testimonial-author">Zeynep Yılmaz</div>
+          <div class="testimonial-role">Hamile Pilates Programı</div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">“Oturarak çalışan biri olarak boyun gerginliğim gitti, nefesim açıldı. Stüdyo çok sakin ve tertemiz.”</p>
+          <div class="testimonial-author">Can Sarp</div>
+          <div class="testimonial-role">Ofis Çalışanı</div>
+        </div>
+      </div>
+      <button class="scroll-btn" id="scrollRightBtn">❯</button>
+    </div>
+  </section>
 
   <footer>
-    <p>© 2025 ReformPilates. Tüm Hakları Saklıdır.</p>
+    <h3>ReformPilates</h3>
+    <p>Bağdat Caddesi, No:10, Kadıköy / İstanbul</p>
+    <p>© 2025 Tüm Hakları Saklıdır.</p>
   </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+
+      navItems.forEach(item => {
+        item.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    navItems.forEach(link => {
+      const href = link.getAttribute('href');
+      link.classList.remove('active');
+      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
+
+    const testimonialsGrid = document.getElementById('testimonialsGrid');
+    const scrollLeftBtn = document.getElementById('scrollLeftBtn');
+    const scrollRightBtn = document.getElementById('scrollRightBtn');
+
+    if (scrollLeftBtn && testimonialsGrid) {
+      scrollLeftBtn.addEventListener('click', () => {
+        testimonialsGrid.scrollBy({
+          left: -340,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    if (scrollRightBtn && testimonialsGrid) {
+      scrollRightBtn.addEventListener('click', () => {
+        testimonialsGrid.scrollBy({
+          left: 340,
+          behavior: 'smooth'
+        });
+      });
+    }
+  </script>
 
 </body>
 </html>

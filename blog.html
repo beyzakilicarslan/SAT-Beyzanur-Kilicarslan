@@ -3,237 +3,583 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog | ReformPilates</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <title>Sağlıklı Yaşam Blogu | ReformPilates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+  
   <style>
-    /* === NAVBAR (TÜM SAYFALAR İLE UYUMLU) === */
+    :root {
+      --primary: #08a4bd;
+      --primary-dark: #068da1;
+      --dark: #1a1a1a;
+      --light: #f8f9fa;
+      --text-gray: #555;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background-color: #fff;
+      line-height: 1.6;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+    }
+
     .navbar {
       position: fixed;
       width: 100%;
       top: 0;
       left: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+      height: 70px;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 0 5%;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: flex-start;
-      padding: 15px 40px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      z-index: 1000;
     }
 
     .logo {
-      font-size: 1.4em;
-      font-weight: 600;
-      color: #08a4bd;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: -1px;
+      white-space: nowrap;
     }
+    .logo span { color: var(--primary); }
 
-    .navbar nav {
-      margin-left: 180px;
-    }
-
-    nav ul {
+    .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 25px;
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    nav ul li a {
+    .nav-links a {
       text-decoration: none;
-      color: #333;
+      color: var(--dark);
       font-weight: 500;
-      transition: 0.3s;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+      padding: 5px 0;
     }
 
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: #08a4bd;
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
     }
 
-    /* === BLOG SAYFASI === */
-    main {
-      margin-top: 100px;
-      padding: 60px 20px;
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--dark);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(10px, 10px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .blog-header {
       text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #fdfbfb 0%, #fff 100%);
+      margin-bottom: 50px;
     }
+    .blog-header h1 { font-size: 3rem; margin-bottom: 10px; font-style: italic; }
+    .blog-header p { font-size: 1.1rem; color: var(--text-gray); max-width: 600px; margin: 0 auto; }
 
-    .blog-title {
-      font-size: 2em;
-      color: #08a4bd;
-      margin-bottom: 10px;
-    }
-
-    .blog-intro {
-      max-width: 650px;
-      margin: 0 auto 40px;
-      color: #555;
-      font-size: 1.1em;
-      line-height: 1.6;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
     }
 
     .blog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      padding: 0 20px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
     }
 
     .blog-card {
       background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 15px;
       overflow: hidden;
-      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #f0f0f0;
     }
 
     .blog-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(8, 164, 189, 0.15);
     }
 
-    /* === BLOG KART FOTOĞRAFLARI === */
-    .blog-card img {
-  width: 100%;
-  height: auto; /* yüksekliği otomatik */
-  max-height: 400px; /* istersen sınır koyabilirsin */
-  object-fit: contain; /* kırpmadan sığdırır */
-}
-
-
-    .blog-card-content {
-      padding: 20px;
-      text-align: left;
+    .card-img {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
     }
 
-    .blog-card-content h3 {
-      color: #08a4bd;
-      font-size: 1.2em;
-      margin-bottom: 10px;
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
     }
 
-    .blog-card-content p {
-      color: #555;
-      font-size: 0.95em;
-      line-height: 1.5;
-      margin-bottom: 15px;
-    }
+    .blog-card:hover .card-img img { transform: scale(1.1); }
 
-    .read-more {
-      display: inline-block;
-      color: #08a4bd;
-      font-weight: 500;
-      text-decoration: none;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    .read-more:hover {
-      text-decoration: underline;
-    }
-
-    .full-content {
-      display: none;
-      margin-top: 15px;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    footer {
-      margin-top: 60px;
-      background: #08a4bd;
+    .category-tag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--primary);
       color: #fff;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .card-body {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .date { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 10px; display: block; }
+
+    .card-body h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      line-height: 1.3;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .card-body h3:hover { color: var(--primary); }
+
+    .excerpt {
+      font-size: 0.95rem;
+      color: var(--text-gray);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .read-more-btn {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      align-self: flex-start;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .read-more-btn:hover { border-color: var(--primary); }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(5px);
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 40px;
+      background: #fff;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.1);
+      position: relative;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .close-modal {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      font-size: 3rem;
+      color: var(--dark);
+      cursor: pointer;
+      transition: color 0.3s;
+      z-index: 2100;
+    }
+    .close-modal:hover { color: var(--primary); }
+
+    .modal-img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .modal-text { font-size: 1.1rem; color: var(--dark); line-height: 1.8; }
+    .modal-text h4 { margin-top: 25px; margin-bottom: 10px; font-size: 1.4rem; }
+    .modal-meta { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+
+    .full-content { display: none; }
+
+    @media (max-width: 768px) {
+      .navbar {
+        height: 60px;
+        padding: 0 4%;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        padding: 0;
+        list-style: none;
+        margin: 0;
+      }
+
+      .nav-links.active {
+        max-height: 500px;
+        padding: 15px 0;
+      }
+
+      .nav-links li {
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 15px 20px;
+        font-size: 0.85rem;
+        border-bottom: none;
+      }
+
+      .nav-links a:hover, .nav-links a.active {
+        background-color: #f8f9fa;
+        border-bottom: none;
+        color: var(--primary);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .blog-header h1 {
+        font-size: 2rem;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <h1 class="logo">ReformPilates</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="hareketler.html">Hareketler</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li>
-        <li><a href="hakkinda.html">Hakkında</a></li>
-      </ul>
-    </nav>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">Reform<span>Pilates</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="hareketler.html">Hareketler</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="hakkinda.html">Hakkında</a></li>
+      <li><a href="iletişim.html">İletişim</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <header class="blog-header">
+    <h1>Reform Yaşam Bloğu</h1>
+    <p>Sağlıklı yaşam, beslenme tüyoları ve pilates dünyasından en güncel bilgiler.</p>
   </header>
 
-  <main>
-    <h2 class="blog-title">Blog Yazıları</h2>
-    <p class="blog-intro">
-      Pilates ve sağlıklı yaşamla ilgili ipuçları, motivasyon yazıları ve uzman tavsiyelerini burada bulabilirsin.
-    </p>
-
+  <div class="container">
     <div class="blog-grid">
-      <div class="blog-card">
-        <img src="images/blog1.jpg" alt="Pilatesin Faydaları">
-        <div class="blog-card-content">
-          <h3>Pilatesin Faydaları</h3>
-          <p>Kısa özet: Pilates, yalnızca bedenini değil, zihnini de güçlendirir. Düzenli yapıldığında duruşu düzeltir, kasları güçlendirir.</p>
-          <a class="read-more">Devamını Oku →</a>
-          <div class="full-content">
-            Pilates, yalnızca bedenini değil, zihnini de güçlendirir. Düzenli yapıldığında duruşu düzeltir, kasları güçlendirir. Daha fazla detay için önerilen egzersizleri uygulayabilirsin ve günlük rutine ekleyebilirsin.
-          </div>
-        </div>
-      </div>
 
-      <div class="blog-card">
-        <img src="images/blog2.jpg" alt="Evde Pilates Rehberi">
-        <div class="blog-card-content">
-          <h3>Evde Pilates Rehberi</h3>
-          <p>Kısa özet: Evinin rahatlığında pilates yapmak istiyorsan, basit ekipmanlarla başlayabileceğin etkili bir rehber seni bekliyor.</p>
-          <a class="read-more">Devamını Oku →</a>
+      <article class="blog-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600" alt="Pilates Faydaları">
+          <span class="category-tag">İpuçları</span>
+        </div>
+        <div class="card-body">
+          <span class="date">7 Aralık 2025</span>
+          <h3>Reformer Pilatesin Vücudunuza 5 İnanılmaz Faydası</h3>
+          <p class="excerpt">Sadece kas yapmakla kalmayın, duruşunuzu düzeltin ve esnekliğinizi artırın. İşte reformerın bilinmeyen yönleri...</p>
+          <a class="read-more-btn">Devamını Oku →</a>
+          
           <div class="full-content">
-            Evinin rahatlığında pilates yapmak istiyorsan, basit ekipmanlarla başlayabileceğin etkili bir rehber seni bekliyor. Başlangıç hareketleri ile adım adım ilerleyebilirsin. Düzenli uygulama ile esnekliğini ve gücünü artırabilirsin.
+            <p>Reformer pilates, Joseph Pilates tarafından geliştirilen ve günümüzde en popüler egzersiz sistemlerinden biri olan aletli pilatestir. Peki neden bu kadar popüler?</p>
+            <h4>1. Duruş Bozukluklarını Düzeltir</h4>
+            <p>Masa başı çalışanların en büyük sorunu olan kifoz (kamburluk) ve lordoz gibi duruş bozuklukları, reformerın omurga odaklı hareketleriyle büyük ölçüde düzelir.</p>
+            <h4>2. Esnekliği Artırır</h4>
+            <p>Kasları şişirmeden uzatarak güçlendirir. Bu sayede daha ince, uzun ve zarif bir kas yapısına sahip olursunuz.</p>
+            <h4>3. Merkez (Core) Bölgesini Güçlendirir</h4>
+            <p>Tüm hareketler "Powerhouse" denilen karın merkezinden başlar. Bu da size dümdüz bir karın ve güçlü bir bel sağlar.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="blog-card">
-        <img src="images/blog3.jpg" alt="Duruş Düzeltme Teknikleri">
-        <div class="blog-card-content">
-          <h3>Duruş Düzeltme Teknikleri</h3>
-          <p>Kısa özet: Doğru duruş, sağlıklı bir omurga için temel şarttır. Günlük yaşamda dikkat edilmesi gereken noktaları keşfet!</p>
-          <a class="read-more">Devamını Oku →</a>
+      <article class="blog-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600" alt="Beslenme">
+          <span class="category-tag">Beslenme</span>
+        </div>
+        <div class="card-body">
+          <span class="date">5 Aralık 2025</span>
+          <h3>Pilates Öncesi ve Sonrası Nasıl Beslenmeliyiz?</h3>
+          <p class="excerpt">Egzersizden maksimum verim almak için ne zaman ve ne yemelisiniz? Enerjinizi tavan yaptıracak tüyolar.</p>
+          <a class="read-more-btn">Devamını Oku →</a>
+
           <div class="full-content">
-            Doğru duruş, sağlıklı bir omurga için temel şarttır. Günlük yaşamda dikkat edilmesi gereken noktaları keşfet ve doğru egzersizlerle omurga sağlığını koru. Bu teknikleri düzenli uygulamak sırt ağrılarını önler ve duruşunu geliştirir.
+            <p>Pilates yaparken midenizin ne çok dolu ne de çok boş olması gerekir. İşte altın kurallar:</p>
+            <h4>Egzersizden 1-2 Saat Önce</h4>
+            <p>Kompleks karbonhidratlar tüketin. Yulaf ezmesi, muz veya bir avuç badem harika seçeneklerdir. Ağır yağlı yemeklerden kaçının.</p>
+            <h4>Egzersizden Sonra</h4>
+            <p>Kas onarımı için protein şarttır. Izgara tavuk salata, yumurta veya proteinli bir smoothie, kaslarınızın toparlanmasına yardımcı olur.</p>
+            <p>Ve en önemlisi: <strong>Su içmeyi unutmayın!</strong> Pilates sırasında terlemeseniz bile vücudunuz su kaybeder.</p>
           </div>
         </div>
-      </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="card-img">
+          <img src="images/pilates2.jpg" alt="Sırt Ağrıları">
+          <span class="category-tag">Sağlık</span>
+        </div>
+        <div class="card-body">
+          <span class="date">1 Aralık 2025</span>
+          <h3>Sırt Ağrılarına Son: Evde Yapabileceğiniz 3 Hareket</h3>
+          <p class="excerpt">Gün boyu oturmaktan ağrıyan sırtınızı rahatlatacak basit ama etkili egzersizler. İlaçsız ağrı kesici.</p>
+          <a class="read-more-btn">Devamını Oku →</a>
+
+          <div class="full-content">
+            <p>Bel ve sırt ağrıları modern yaşamın en büyük problemi. Ancak günde sadece 10 dakikanızı ayırarak bu ağrılardan kurtulabilirsiniz.</p>
+            <h4>1. Kedi-İnek (Cat-Cow) Esnemesi</h4>
+            <p>Dört ayak üzerine gelin. Nefes alırken belinizi çukurlaştırıp başınızı kaldırın, nefes verirken sırtınızı kamburlaştırıp başınızı eğin. Omurganızı yağlar.</p>
+            <h4>2. Çocuk Pozu (Child's Pose)</h4>
+            <p>Topuklarınızın üzerine oturun ve kollarınızı öne doğru uzatın. Alnınızı yere koyun ve derin nefes alın. Sırt kaslarınızı harika bir şekilde uzatır.</p>
+            <h4>3. Köprü (Bridge)</h4>
+            <p>Sırt üstü yatın, dizlerinizi bükün. Kalçanızı yukarı kaldırıp indirin. Bu hareket bel kaslarını güçlendirir.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600" alt="Motivasyon">
+          <span class="category-tag">Motivasyon</span>
+        </div>
+        <div class="card-body">
+          <span class="date">28 Kasım 2025</span>
+          <h3>İstikrarı Korumak: Spora Devam Etmenin Püf Noktaları</h3>
+          <p class="excerpt">Başlamak kolaydır, zor olan devam etmektir. Motivasyonunuzu kaybettiğinizde ne yapmalısınız?</p>
+          <a class="read-more-btn">Devamını Oku →</a>
+
+          <div class="full-content">
+            <p>Spora büyük bir hevesle başlayıp 2 hafta sonra bırakanlardan mısınız? Yalnız değilsiniz. İşte istikrarı korumanın yolları:</p>
+            <h4>Küçük Hedefler Koyun</h4>
+            <p>"1 ayda 10 kilo vereceğim" yerine "Haftada 2 gün pilatese gideceğim" gibi ulaşılabilir hedefler belirleyin.</p>
+            <h4>Kendinizi Ödüllendirin</h4>
+            <p>Bir ayı tamamladığınızda kendinize yeni bir spor kıyafeti veya sevdiğiniz bir masajı hediye edin.</p>
+            <h4>Bir Partner Bulun</h4>
+            <p>Arkadaşla yapılan spor her zaman daha eğlencelidir ve sorumluluk hissini artırır.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600" alt="Nefes Teknikleri">
+          <span class="category-tag">Teknik</span>
+        </div>
+        <div class="card-body">
+          <span class="date">25 Kasım 2025</span>
+          <h3>Pilates Nefes Teknikleri: Doğru Nefes Almanın Gücü</h3>
+          <p class="excerpt">Nefes almak sadece oksijen almak değil, pilatesin kalbidir. Doğru nefes teknikleriyle performansınızı artırın.</p>
+          <a class="read-more-btn">Devamını Oku →</a>
+
+          <div class="full-content">
+            <p>Pilates'te nefes, hareketin kalitesini belirleyen en önemli faktördür. Joseph Pilates'in dediği gibi: "Nefes hayattır, nefes almak yaşamaktır."</p>
+            <h4>Yan Nefes Tekniği</h4>
+            <p>Göğüs kafesini genişletirken karın kaslarını aktif tutar. Nefes alırken kaburgalarınızı yanlara doğru açın, nefes verirken karın kaslarınızı içeri çekin.</p>
+            <h4>Nefes ve Hareket Senkronizasyonu</h4>
+            <p>Hareketin zorlu kısmında nefes verin, kolay kısmında nefes alın. Bu, kaslarınızın daha verimli çalışmasını sağlar.</p>
+            <h4>Günlük Pratik</h4>
+            <p>Günde 5 dakika nefes egzersizi yaparak hem stresinizi azaltın hem de pilates performansınızı artırın.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600" alt="Başlangıç Rehberi">
+          <span class="category-tag">Rehber</span>
+        </div>
+        <div class="card-body">
+          <span class="date">22 Kasım 2025</span>
+          <h3>Reformer Pilatese Başlayanlar İçin Kapsamlı Rehber</h3>
+          <p class="excerpt">İlk defa reformer pilates yapacaklar için bilmeniz gereken her şey. Korkmayın, başlamak sandığınızdan kolay!</p>
+          <a class="read-more-btn">Devamını Oku →</a>
+
+          <div class="full-content">
+            <p>Reformer pilatese başlamak heyecan verici ama aynı zamanda korkutucu olabilir. İşte ilk adımlarınızı kolaylaştıracak bilgiler:</p>
+            <h4>İlk Dersinizde Ne Beklemelisiniz?</h4>
+            <p>Eğitmeniniz size reformer makinesini tanıtacak ve temel pozisyonları gösterecek. İlk derste mükemmel olmanız beklenmez, sadece öğrenmeye açık olun.</p>
+            <h4>Ne Giyilmeli?</h4>
+            <p>Rahat, esnek kıyafetler tercih edin. Çok bol veya çok dar giysiler hareket özgürlüğünüzü kısıtlar. Çorapsız veya kaymayan çoraplarla çalışın.</p>
+            <h4>İlk Hafta İpuçları</h4>
+            <p>Kas ağrıları normaldir. Bol su için, dinlenin ve sabırlı olun. Herkes kendi hızında ilerler, kendinizi başkalarıyla karşılaştırmayın.</p>
+          </div>
+        </div>
+      </article>
+
     </div>
-  </main>
+  </div>
 
-  <footer>
-    <p>© 2025 ReformPilates. Tüm Hakları Saklıdır.</p>
-  </footer>
-
-<script src="scripts/script.js"></script>
+  <div id="blogModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <div class="modal-content">
+      <img id="mImg" src="" alt="" class="modal-img">
+      <div class="modal-meta">
+        <span id="mDate">Tarih</span> | <span id="mCat" style="color:var(--primary); font-weight:600;">Kategori</span>
+      </div>
+      <h1 id="mTitle" style="margin-bottom:20px; font-size:2rem;">Başlık</h1>
+      <div id="mText" class="modal-text">
+        </div>
+    </div>
+  </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const readMoreLinks = document.querySelectorAll(".read-more");
+    const readBtns = document.querySelectorAll('.read-more-btn');
+    const modal = document.getElementById('blogModal');
+    const closeBtn = document.querySelector('.close-modal');
 
-  readMoreLinks.forEach(link => {
-    link.addEventListener("click", function(e) {
-      e.preventDefault();
-      const fullContent = this.nextElementSibling;
-      if(fullContent.style.display === "block") {
-        fullContent.style.display = "none";
-        this.textContent = "Devamını Oku →";
-      } else {
-        fullContent.style.display = "block";
-        this.textContent = "Küçült ↑";
-        fullContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const mImg = document.getElementById('mImg');
+    const mDate = document.getElementById('mDate');
+    const mCat = document.getElementById('mCat');
+    const mTitle = document.getElementById('mTitle');
+    const mText = document.getElementById('mText');
+
+    readBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('.blog-card');
+        const imgSrc = card.querySelector('img').src;
+        const category = card.querySelector('.category-tag').textContent;
+        const date = card.querySelector('.date').textContent;
+        const title = card.querySelector('h3').textContent;
+        const fullContent = card.querySelector('.full-content').innerHTML;
+
+        mImg.src = imgSrc;
+        mCat.textContent = category;
+        mDate.textContent = date;
+        mTitle.textContent = title;
+        mText.innerHTML = fullContent;
+
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
       }
     });
-  });
-});
-</script>
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+    }
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    navItems.forEach(link => {
+      const href = link.getAttribute('href');
+      link.classList.remove('active');
+      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
+  </script>
 
 </body>
 </html>

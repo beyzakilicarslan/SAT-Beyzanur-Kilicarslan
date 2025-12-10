@@ -6,12 +6,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // 1️⃣ "Başla" butonuna tıklayınca hareketler sayfasına git
-  const baslaBtn = document.querySelector("#btnBasla");
-  if (baslaBtn) {
-    baslaBtn.addEventListener("click", () => {
-      window.location.href = "hareketler.html";
-    });
-  }
+ const baslaBtn = document.querySelector("#btnBasla");
+if (baslaBtn) {
+  baslaBtn.addEventListener("click", () => {
+    window.location.href = "hareketler.html";
+  });
+}
+
 
   // 2️⃣ Navbar scroll efekti
   const navbar = document.querySelector(".navbar");

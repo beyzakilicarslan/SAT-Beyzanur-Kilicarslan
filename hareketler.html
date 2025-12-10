@@ -3,352 +3,1063 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pilates Hareketleri | ReformPilates</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <title>Hareket Kütüphanesi | ReformPilates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  
   <style>
-    /* === NAVBAR (ANA SAYFA İLE UYUMLU) === */
+    :root {
+      --primary: #08a4bd;
+      --primary-dark: #068da1;
+      --dark: #1a1a1a;
+      --light: #f8f9fa;
+      --text-gray: #555;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background-color: #fff;
+      line-height: 1.6;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+    }
+
     .navbar {
       position: fixed;
       width: 100%;
       top: 0;
       left: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+      height: 70px;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 0 5%;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: flex-start;
-      padding: 15px 40px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      z-index: 1000;
     }
 
     .logo {
-      font-size: 1.4em;
-      font-weight: 600;
-      color: #08a4bd;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: -1px;
+      white-space: nowrap;
     }
+    .logo span { color: var(--primary); }
 
-    .navbar nav {
-      margin-left: 180px;
-    }
-
-    nav ul {
+    .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 25px;
       list-style: none;
       margin: 0;
       padding: 0;
+      align-items: center;
     }
 
-    nav ul li a {
+    .nav-links a {
       text-decoration: none;
-      color: #333;
+      color: var(--dark);
       font-weight: 500;
-      transition: 0.3s;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+      padding: 5px 0;
     }
 
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: #08a4bd;
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
     }
 
-    main {
-      margin-top: 100px;
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+      z-index: 1001;
     }
-    /* === MODAL GENEL === */
 
-    /* === MODAL === */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--dark);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
 
-.modal-content {
-  position: relative;
-  background: #fff;
-  padding: 20px;
-  width: 800px;
-  max-width: 95%;
-  border-radius: 12px;
-  text-align: center;
-  animation: fadeIn 0.3s ease;
-}
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(10px, 10px);
+    }
 
-.modal-content img {
-  width: 100%;
-  max-height: 500px;
-  object-fit: contain;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
 
-/* X kapatma butonu */
-.close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
 
-/* İleri/geri tuşları */
-.modal-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(8,164,189,0.8);
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  font-size: 24px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-}
+    @media (max-width: 1024px) {
+      .navbar {
+        height: 60px;
+        padding: 0 4%;
+      }
 
-.modal-nav.prev { left: -40px; }
-.modal-nav.next { right: -40px; }
+      .logo {
+        font-size: 1.3rem;
+      }
 
-.modal-nav:hover { background: rgba(8,164,189,1); }
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        padding: 0;
+        list-style: none;
+        margin: 0;
+      }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
+      .nav-links.active {
+        max-height: 500px;
+        padding: 15px 0;
+      }
 
-@media (max-width: 768px) {
-  .modal-content { width: 95%; }
-  .modal-nav.prev { left: 5px; }
-  .modal-nav.next { right: 5px; }
-}
+      .nav-links li {
+        border-bottom: 1px solid #f0f0f0;
+      }
 
+      .nav-links a {
+        display: block;
+        padding: 15px 20px;
+        font-size: 0.85rem;
+        border-bottom: none;
+      }
+
+      .nav-links a:hover, .nav-links a.active {
+        background-color: #f8f9fa;
+        border-bottom: none;
+        color: var(--primary);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    .header-section {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(to bottom, #f0f7f8, #fff);
+    }
+    .header-section h1 { font-size: 3rem; margin-bottom: 10px; }
+    .header-section p { font-size: 1.1rem; color: var(--text-gray); max-width: 700px; margin: 0 auto 30px; }
+
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      font-size: 0.95rem;
+      color: var(--text-gray);
+    }
+
+    .stat-item strong {
+      color: var(--primary);
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .filter-section {
+      margin-bottom: 40px;
+      padding: 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .search-box {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto 25px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px 50px 14px 20px;
+      border: 2px solid #e5e5e5;
+      border-radius: 50px;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(8, 164, 189, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 10px 24px;
+      border: 2px solid #e5e5e5;
+      background: white;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-gray);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.03);
+      opacity: 1;
+    }
+
+    .card.hidden {
+      display: none;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(8, 164, 189, 0.15);
+      border-color: var(--primary);
+    }
+
+    .card-img-holder {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-img-holder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img-holder img { transform: scale(1.08); }
+
+    .play-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .play-icon {
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .card:hover .play-overlay { opacity: 1; }
+
+    .card-body { padding: 20px; text-align: center; }
+    .card-body h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--dark); }
+    .card-body p { font-size: 0.9rem; color: var(--text-gray); }
+    
+    .card-tag {
+      font-size: 0.75rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 5px;
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(8, 164, 189, 0.1);
+      border-radius: 12px;
+    }
+
+    .difficulty-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 5px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--dark);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .difficulty-badge.beginner { color: #10b981; }
+    .difficulty-badge.intermediate { color: #f59e0b; }
+    .difficulty-badge.advanced { color: #ef4444; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(20, 20, 20, 0.9);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.show { display: flex; opacity: 1; }
+
+    .modal-content {
+      background: #fff;
+      width: 100%;
+      max-width: 800px;
+      max-height: 95vh;
+      border-radius: 20px;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 20px 30px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    .modal-header h2 { font-size: 1.8rem; color: var(--primary); }
+    .close-btn { font-size: 2.5rem; cursor: pointer; color: #aaa; line-height: 0.7; }
+    .close-btn:hover { color: var(--dark); }
+
+    .modal-body { padding: 30px; }
+
+    .modal-img-large {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      display: none;
+    }
+
+    .video-wrapper video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border-radius: 12px;
+    }
+
+    .modal-desc-box {
+      background: #f9f9f9;
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 5px solid var(--primary);
+    }
+    .modal-desc-box h4 { margin-bottom: 10px; font-size: 1.1rem; color: var(--dark); }
+    .modal-desc-box p { line-height: 1.8; color: #555; }
+
+    .modal-content::-webkit-scrollbar { width: 8px; }
+    .modal-content::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+    .benefits-list {
+      margin-top: 20px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .benefits-list li {
+      padding: 10px 0;
+      padding-left: 30px;
+      position: relative;
+      color: var(--text-gray);
+      line-height: 1.6;
+    }
+
+    .benefits-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .header-section h1 { font-size: 2rem; }
+      .stats-bar { gap: 20px; }
+      .stat-item { font-size: 0.85rem; }
+      .stat-item strong { font-size: 1.1rem; }
+      .filter-section { padding: 20px; }
+      .filter-buttons { gap: 8px; }
+      .filter-btn { padding: 8px 16px; font-size: 0.85rem; }
+    }
   </style>
-  
 </head>
-
 <body>
 
-  <header class="navbar">
-    <h1 class="logo">ReformPilates</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="hareketler.html" class="active">Hareketler</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="hakkinda.html">Hakkında</a></li>
-      </ul>
-    </nav>
+  <nav class="navbar">
+    <a href="index.html" class="logo">Reform<span>Pilates</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="hareketler.html" class="active">Hareketler</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="hakkinda.html">Hakkında</a></li>
+      <li><a href="iletişim.html">İletişim </a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <header class="header-section">
+    <h1>Reformer Hareket Kütüphanesi</h1>
+    <p>Doğru teknik, güvenli egzersiz ve maksimum sonuç için hareketleri inceleyin.</p>
+    <div class="stats-bar">
+      <span class="stat-item"><strong>24</strong> Hareket</span>
+      <span class="stat-item"><strong>6</strong> Kategori</span>
+      <span class="stat-item"><strong>3</strong> Seviye</span>
+    </div>
   </header>
 
-  <main class="hareketler-container">
-    <h2 class="section-title">Pilates Hareketleri</h2>
-    <p class="intro-text">
-      Aşağıdaki hareketler tüm seviyeler için uygun olup temel pilates prensipleriyle beden kontrolünü artırmaya yardımcı olur.
-    </p>
-    <!-- === MODAL === -->
-<!-- === MODAL === -->
-<div id="hareketModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
+  <div class="container">
+    <div class="filter-section">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Hareket ara...">
+        <span class="search-icon">🔍</span>
+      </div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Tümü</button>
+        <button class="filter-btn" data-filter="Başlangıç">Başlangıç</button>
+        <button class="filter-btn" data-filter="Core">Core</button>
+        <button class="filter-btn" data-filter="Omurga">Omurga</button>
+        <button class="filter-btn" data-filter="Esneklik">Esneklik</button>
+        <button class="filter-btn" data-filter="İleri Seviye">İleri Seviye</button>
+      </div>
+    </div>
 
-    <button class="modal-nav prev" aria-label="Önceki">◀</button>
+    <div class="grid" id="exerciseGrid">
 
-    <img id="modalImage" src="" alt="">
-
-    <button class="modal-nav next" aria-label="Sonraki">▶</button>
-
-    <h2 id="modalTitle"></h2>
-    <p id="modalDescription"></p>
-  </div>
-</div>
-
-
-    <div class="hareketler-grid">
-
-      <!-- ORİJİNALLER -->
-      <div class="hareket-card">
-        <img src="images/rollup.jpg" alt="Roll Up">
-        <h3>Roll Up</h3>
-        <p>Omurgayı tek tek yuvarlayarak güç ve esneklik kazandırır.</p>
+      <div class="card" data-video="videos/video1.mp4">
+        <div class="card-img-holder">
+          <img src="images/Footwork1.jpg" alt="Footwork">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge beginner">Başlangıç</span>
+          <span class="card-tag" data-category="Başlangıç">Başlangıç</span>
+          <h3>Footwork</h3>
+          <p>Isınma ve bacak hizalama.</p>
+          <div class="full-desc" style="display:none;">
+            Footwork serisi, reformer derslerinin temel taşıdır. Ayak parmakları, kemerler ve topuklar üzerinde yapılan varyasyonlarla bacakları ısıtır, pelvik stabilizasyonu sağlar ve omurga hizasını düzeltir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/hundred.jpg" alt="The Hundred">
-        <h3>The Hundred</h3>
-        <p>Karın kaslarını aktif hale getiren nefes odaklı bir başlangıç egzersizi.</p>
+      <div class="card" data-video="videos/video2.mp4">
+        <div class="card-img-holder">
+          <img src="images/The Hundred.jpg" alt="The Hundred">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge beginner">Başlangıç</span>
+          <span class="card-tag" data-category="Core">Core</span>
+          <h3>The Hundred</h3>
+          <p>Nefes ve karın gücü.</p>
+          <div class="full-desc" style="display:none;">
+            Pilatesin imzası olan bu hareket, kan dolaşımını hızlandırır. Bacaklar yukarıda sabitlenirken kollar ritmik olarak pompalanır. Nefes alışverişi 5 sayıda al, 5 sayıda ver şeklindedir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/single-leg-circle.jpg" alt="Single Leg Circle">
-        <h3>Single Leg Circle</h3>
-        <p>Kalça çevresi kasları ve dengeyi geliştiren temel bir hareket.</p>
+      <div class="card" data-video="videos/video3.mp4">
+        <div class="card-img-holder">
+          <img src="images/Roll Up.jpg" alt="Roll Up">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge intermediate">Orta</span>
+          <span class="card-tag" data-category="Omurga">Omurga</span>
+          <h3>Roll Up</h3>
+          <p>Omurga esnekliği ve karın kontrolü.</p>
+          <div class="full-desc" style="display:none;">
+            Sırt üstü yatıştan tam oturma pozisyonuna, omurları tek tek hareket ettirerek (artikülasyon) kalkmayı hedefler. Karın kaslarını güçlendirirken arka bacak kaslarını esnetir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/plank.jpg" alt="Plank">
-        <h3>Plank</h3>
-        <p>Tüm gövdeyi stabilize eden dayanıklılık çalışması.</p>
+      <div class="card" data-video="videos/video4.mp4">
+        <div class="card-img-holder">
+          <img src="images/LegCircles.jpg" alt="Leg Circles">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge beginner">Başlangıç</span>
+          <span class="card-tag" data-category="Başlangıç">Kalça</span>
+          <h3>Leg Circles</h3>
+          <p>Kalça eklemi hareketliliği.</p>
+          <div class="full-desc" style="display:none;">
+             Kalça eklemini yağlamak ve hareket açıklığını artırmak için yapılır. Pelvis sabit tutulurken bacaklarla daireler çizilir. Core stabilizasyonu şarttır.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/swandive.jpg" alt="Swan Dive">
-        <h3>Swan Dive</h3>
-        <p>Sırt kaslarını güçlendirir, omurgayı gerer ve açar.</p>
+      <div class="card" data-video="videos/video5.mp4">
+        <div class="card-img-holder">
+          <img src="images/TheFrog.jpg" alt="Frog">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge intermediate">Orta</span>
+          <span class="card-tag" data-category="Başlangıç">Bacak</span>
+          <h3>The Frog</h3>
+          <p>İç bacak ve kalça güçlendirme.</p>
+          <div class="full-desc" style="display:none;">
+            Topuklar bitişik, parmaklar ayrı (Pilates V) pozisyonunda bacakları ileri itip çekme hareketidir. İç bacakları ve kalçayı yoğun şekilde çalıştırır.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/saw.jpg" alt="The Saw">
-        <h3>The Saw</h3>
-        <p>Omurga rotasyonunu artıran esneklik odaklı hareket.</p>
+      <div class="card" data-video="videos/video6.mp4">
+        <div class="card-img-holder">
+          <img src="images/StomachMassage.jpg" alt="Stomach Massage">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge intermediate">Orta</span>
+          <span class="card-tag" data-category="Esneklik">Esneklik</span>
+          <h3>Stomach Massage</h3>
+          <p>Omurga C eğrisi ve karın.</p>
+          <div class="full-desc" style="display:none;">
+             Bu seri, sırtı yuvarlayarak karın kaslarını derinlemesine çalıştırır ve sindirim sistemine masaj etkisi yapar. Bacaklarla footbar itilirken omurga şekli korunur.
+          </div>
+        </div>
       </div>
 
-      <!-- YENİ EKLENEN 12 HAREKET -->
-      <div class="hareket-card">
-        <img src="images/bridge.jpg" alt="Shoulder Bridge">
-        <h3>Shoulder Bridge</h3>
-        <p>Kalça ve hamstring kaslarını güçlendirir, omurgayı destekler.</p>
+      <div class="card" data-video="videos/video7.mp4">
+        <div class="card-img-holder">
+          <img src="images/ShortBox.jpg" alt="Short Box">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge advanced">İleri</span>
+          <span class="card-tag" data-category="İleri Seviye">İleri Seviye</span>
+          <h3>Short Box Series</h3>
+          <p>Karın ve sırt dayanıklılığı.</p>
+          <div class="full-desc" style="display:none;">
+             Kutunun üzerine oturarak yapılan bu seri (Round, Flat, Side to Side, Twist), karın kaslarını en zorlayıcı açılarda çalıştırır ve postürü düzeltir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/teaser.jpg" alt="Teaser">
-        <h3>Teaser</h3>
-        <p>Core bölgesini yoğun şekilde çalıştıran ileri seviye denge egzersizi.</p>
+      <div class="card" data-video="videos/video8.mp4">
+        <div class="card-img-holder">
+          <img src="images/TheElephant.jpg" alt="Elephant">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge intermediate">Orta</span>
+          <span class="card-tag" data-category="Esneklik">Esneme</span>
+          <h3>The Elephant</h3>
+          <p>Arka bacak ve omurga esnemesi.</p>
+          <div class="full-desc" style="display:none;">
+             Reformer üzerinde öne eğilerek yapılan bu hareket, hem hamstring kaslarını esnetir hem de karın kaslarını kullanarak taşıyıcıyı kontrol etmeyi öğretir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/sidekick.jpg" alt="Side Kick">
-        <h3>Side Kick</h3>
-        <p>Bacak kaslarını güçlendirir, kalçayı şekillendirir ve dengenizi geliştirir.</p>
+      <div class="card" data-video="videos/video9.mp4">
+        <div class="card-img-holder">
+          <img src="images/KneeStretches1.jpg" alt="Knee Stretches">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge intermediate">Orta</span>
+          <span class="card-tag" data-category="Başlangıç">Diz/Kalça</span>
+          <h3>Knee Stretches</h3>
+          <p>Pelvik stabilizasyon.</p>
+          <div class="full-desc" style="display:none;">
+             Dizlerin üzerinde durarak yapılan bu hareket serisi (Round, Flat, Knees Off), alt vücut ile üst vücudun bağımsız hareket etmesini öğretir ve kalçayı şekillendirir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/spine-stretch.jpg" alt="Spine Stretch Forward">
-        <h3>Spine Stretch Forward</h3>
-        <p>Omurga fleksiyonunu artırır ve arka bacak esnekliğini geliştirir.</p>
+      <div class="card" data-video="videos/video10.mp4">
+        <div class="card-img-holder">
+          <img src="images/Running.jpg" alt="Running">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge intermediate">Orta</span>
+          <span class="card-tag" data-category="Başlangıç">Kardiyo</span>
+          <h3>Running</h3>
+          <p>Bacak ritmi ve koordinasyon.</p>
+          <div class="full-desc" style="display:none;">
+             Yatar pozisyonda reformer üzerinde koşma taklidi yapılarak kalça ve diz eklemleri çalıştırılır. Pelvisin sabit kalması bu hareketin anahtarıdır.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/mermaid.jpg" alt="Mermaid Stretch">
-        <h3>Mermaid Stretch</h3>
-        <p>Yan beden hattını uzatan ve nefesi rahatlatan esneme hareketi.</p>
+      <div class="card" data-video="videos/video11.mp4">
+        <div class="card-img-holder">
+          <img src="images/PelvicLift.jpg" alt="Pelvic Lift">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge beginner">Başlangıç</span>
+          <span class="card-tag" data-category="Başlangıç">Kalça</span>
+          <h3>Pelvic Lift</h3>
+          <p>Arka bacak ve kalça sıkılaştırma.</p>
+          <div class="full-desc" style="display:none;">
+             Köprü (Bridge) pozisyonuna benzer. Kalçayı kaldırarak hamstring ve gluteus kaslarını hedefler. Omurga sağlığı için çok faydalıdır.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/rollover.jpg" alt="Roll Over">
-        <h3>Roll Over</h3>
-        <p>Omurga kontrolü gerektiren ileri seviye bir core egzersizi.</p>
+      <div class="card" data-video="videos/video12.mp4">
+        <div class="card-img-holder">
+          <img src="images/Teaser.jpg" alt="Teaser">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="difficulty-badge advanced">İleri</span>
+          <span class="card-tag" data-category="İleri Seviye">Usta İşi</span>
+          <h3>Teaser</h3>
+          <p>Denge, güç ve kontrol.</p>
+          <div class="full-desc" style="display:none;">
+             Pilatesin en ikonik ve zor hareketlerinden biridir. Vücut V şeklindeyken denge sağlanır. Hem üst hem alt karın kaslarını aynı anda çalıştırır.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/kneeling-side-kick.jpg" alt="Kneeling Side Kick">
-        <h3>Kneeling Side Kick</h3>
-        <p>Kalça çevresini ve yan karın kaslarını güçlendirir.</p>
+      <div class="card" data-video="videos/video13.mp4">
+        <div class="card-img-holder">
+          <img src="images/LongStretch.jpg" alt="Long Stretch">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Tüm Vücut</span>
+          <h3>Long Stretch</h3>
+          <p>Plank pozisyonunda güç.</p>
+          <div class="full-desc" style="display:none;">
+             Reformer üzerinde plank pozisyonunda yapılan bu hareket, omuz stabilitesi ve merkez (core) gücü gerektirir. Tüm vücudu titretir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/neck-pull.jpg" alt="Neck Pull">
-        <h3>Neck Pull</h3>
-        <p>Roll Up’ın daha zorlu bir versiyonu olup core gücü gerektirir.</p>
+      <div class="card" data-video="videos/video14.mp4">
+        <div class="card-img-holder">
+          <img src="images/Mermaid.jpg" alt="Mermaid">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Yan Karın</span>
+          <h3>Mermaid</h3>
+          <p>Yan gövde esnetme.</p>
+          <div class="full-desc" style="display:none;">
+             Yan oturarak yapılan bu zarif hareket, gövdenin yan kısımlarını açar, esnetir ve nefes kapasitesini artırır. Duruş bozukluklarına iyi gelir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/leg-pull-front.jpg" alt="Leg Pull Front">
-        <h3>Leg Pull Front</h3>
-        <p>Plank pozisyonunda bacak kaldırma ile tüm gövdeyi güçlendirir.</p>
+      <div class="card" data-video="videos/video15.mp4">
+        <div class="card-img-holder">
+          <img src="images/SideSplits.jpg" alt="Side Splits">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Denge</span>
+          <h3>Side Splits</h3>
+          <p>İç bacak ve denge.</p>
+          <div class="full-desc" style="display:none;">
+             Ayakta yapılan bu hareket, bacakları yana doğru açarak iç bacak kaslarını çalıştırır ve denge yeteneğini geliştirir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/hip-twist.jpg" alt="Hip Twist">
-        <h3>Hip Twist</h3>
-        <p>Core rotasyonunu güçlendirir, kalça stabilitesini artırır.</p>
+      <div class="card" data-video="videos/video16.mp4">
+        <div class="card-img-holder">
+          <img src="images/FrontSplits.jpg" alt="Front Splits">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Esneme</span>
+          <h3>Front Splits</h3>
+          <p>Kalça fleksör esnetme.</p>
+          <div class="full-desc" style="display:none;">
+             Reformer üzerinde öne ve arkaya doğru yapılan lunges benzeri bu hareket, kalça fleksörlerini ve hamstringleri derinlemesine esnetir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/double-leg-stretch.jpg" alt="Double Leg Stretch">
-        <h3>Double Leg Stretch</h3>
-        <p>Nefesle uyumlu şekilde core kaslarını aktif eden temel hareketlerden biridir.</p>
+      <div class="card" data-video="videos/video17.mp4">
+        <div class="card-img-holder">
+          <img src="images/PullStraps.jpg" alt="Pull Straps">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Sırt</span>
+          <h3>Pull Straps</h3>
+          <p>Sırt ve omuz güçlendirme.</p>
+          <div class="full-desc" style="display:none;">
+             Kutu üzerinde yüzüstü yatarken kayışların çekilmesiyle yapılır. Sırt kaslarını (latissimus dorsi) güçlendirir ve duruşu dikleştirir.
+          </div>
+        </div>
       </div>
 
-      <div class="hareket-card">
-        <img src="images/sidebend.jpg" alt="Side Bend">
-        <h3>Side Bend</h3>
-        <p>Yan kasları güçlendirirken aynı zamanda omurga esnekliği sağlar.</p>
+      <div class="card" data-video="videos/video18.mp4">
+        <div class="card-img-holder">
+          <img src="images/T-Shape1.jpg" alt="T-Shape">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Omuz</span>
+          <h3>T-Shape</h3>
+          <p>Omuz stabilizasyonu.</p>
+          <div class="full-desc" style="display:none;">
+             Kolların yanlara açılarak T şeklini aldığı bu hareket, kürek kemiklerinin (scapula) stabilizasyonunu sağlar ve sırtın üst kısmını çalıştırır.
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-video="videos/video19.mp4">
+        <div class="card-img-holder">
+          <img src="images/Swan.jpg" alt="Swan">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Uzatma</span>
+          <h3>Swan</h3>
+          <p>Omurga uzatma (Extension).</p>
+          <div class="full-desc" style="display:none;">
+             Yüzüstü yatarken gövdenin yukarı kaldırılmasıdır. Tüm arka zinciri çalıştırır, göğüs kafesini açar ve masa başı çalışanlar için harikadır.
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-video="videos/video20.mp4">
+        <div class="card-img-holder">
+          <img src="images/Corkscrew.jpg" alt="Corkscrew">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Core</span>
+          <h3>Corkscrew</h3>
+          <p>Rotasyon ve karın kontrolü.</p>
+          <div class="full-desc" style="display:none;">
+             Bacaklarla havada daireler çizilerek yapılan, oblik (yan karın) kaslarını ve omurga rotasyonunu geliştiren ileri seviye bir harekettir.
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-video="videos/video21.mp4">
+        <div class="card-img-holder">
+          <img src="images/ControlBalance.jpg" alt="Control Balance">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Denge</span>
+          <h3>Control Balance</h3>
+          <p>Tüm vücut kontrolü.</p>
+          <div class="full-desc" style="display:none;">
+             Vücudun ağırlık merkezini kontrol etmeyi gerektiren, denge ve gücün birleştiği zorlu bir egzersizdir.
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-video="videos/video22.mp4">
+        <div class="card-img-holder">
+          <img src="images/Star.jpg" alt="Star">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Yan Plank</span>
+          <h3>Star</h3>
+          <p>Yan hat güçlendirme.</p>
+          <div class="full-desc" style="display:none;">
+             Reformer üzerinde yan plank pozisyonunda yapılan, vücudun yan hattını (lateral line) güçlendiren ve dengeyi zorlayan bir harekettir.
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-video="videos/video23.mp4">
+        <div class="card-img-holder">
+          <img src="images/SnakeTwist.jpg" alt="Snake Twist">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">İleri Seviye</span>
+          <h3>Snake / Twist</h3>
+          <p>Omurga rotasyonu ve güç.</p>
+          <div class="full-desc" style="display:none;">
+             Vücudun yılan gibi kıvrılarak hareket ettirildiği, omuz kuşağı stabilitesi ve güçlü bir core gerektiren akıcı bir seridir.
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-video="videos/video24.mp4">
+        <div class="card-img-holder">
+          <img src="images/Semi Circle.jpg" alt="Semi Circle">
+          <div class="play-overlay"><span class="play-icon">▶</span></div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Esneklik</span>
+          <h3>Semi Circle</h3>
+          <p>Omurga mobilizasyonu.</p>
+          <div class="full-desc" style="display:none;">
+             Omurganın tam bir dalga gibi hareket etmesini sağlayan, göğsü açan ve omurları rahatlatan keyifli ama teknik bir harekettir.
+          </div>
+        </div>
       </div>
 
     </div>
-  </main>
+  </div>
 
-  <footer>
-    <p>© 2025 ReformPilates. Tüm Hakları Saklıdır.</p>
-  </footer>
+  <div id="exerciseModal" class="modal">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h2 id="mTitle">Hareket Başlığı</h2>
+        <span class="close-btn">&times;</span>
+      </div>
 
-  <script src="scripts/script.js"></script>
+      <div class="modal-body">
+        
+        <img id="mImage" src="" alt="Hareket Detayı" class="modal-img-large">
 
-</body>
+        <div id="mVideoWrapper" class="video-wrapper">
+          <video id="mVideo" controls>
+            <source src="" type="video/mp4">
+            Tarayıcınız video oynatmayı desteklemiyor.
+          </video>
+        </div>
+
+        <div class="modal-desc-box">
+          <h4>Hareketin Detayları ve Faydaları</h4>
+          <p id="mDesc">Açıklama yükleniyor...</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 <script>
-const hareketKartlari = Array.from(document.querySelectorAll(".hareket-card"));
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links a');
 
-const modal = document.getElementById("hareketModal");
-const modalImg = document.getElementById("modalImage");
-const modalTitle = document.getElementById("modalTitle");
-const modalDesc = document.getElementById("modalDescription");
-const closeBtn = document.querySelector(".close");
-const btnNext = document.querySelector(".modal-nav.next");
-const btnPrev = document.querySelector(".modal-nav.prev");
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+    }
 
-let currentIndex = 0;
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
 
-// Kartlara tıklandığında modal aç
-hareketKartlari.forEach((card, index) => {
-  card.addEventListener("click", () => {
-    openModal(index);
-  });
-});
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    navItems.forEach(link => {
+      const href = link.getAttribute('href');
+      link.classList.remove('active');
+      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
 
-function openModal(index) {
-  currentIndex = index;
-  const card = hareketKartlari[currentIndex];
-  modalImg.src = card.querySelector("img").src;
-  modalTitle.textContent = card.querySelector("h3").textContent;
-  modalDesc.textContent = card.querySelector("p").textContent;
-  modal.style.display = "flex";
-}
+    const cards = document.querySelectorAll('.card');
+    const modal = document.getElementById('exerciseModal');
+    const closeBtn = document.querySelector('.close-btn');
+    const mTitle = document.getElementById('mTitle');
+    const mImage = document.getElementById('mImage');
+    const mVideoWrapper = document.getElementById('mVideoWrapper');
+    const mVideo = document.getElementById('mVideo');
+    const mDesc = document.getElementById('mDesc');
 
-// Kapat
-closeBtn.onclick = () => modal.style.display = "none";
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('h3').textContent;
+            const imgSrc = card.querySelector('img').src;
+            const desc = card.querySelector('.full-desc').innerHTML;
+            const videoSrc = card.getAttribute('data-video');
 
-// Modal dışına tıklayınca kapanır
-window.onclick = (e) => {
-  if (e.target === modal) modal.style.display = "none";
-};
+            mTitle.textContent = title;
+            mImage.src = imgSrc;
+            mDesc.innerHTML = desc;
 
-// İleri / Geri fonksiyonları
-btnNext.onclick = () => navigate(1);
-btnPrev.onclick = () => navigate(-1);
+            if (videoSrc && videoSrc !== "") {
+                mVideoWrapper.style.display = "block";
+                mVideo.src = videoSrc;
+            } else {
+                mVideoWrapper.style.display = "none";
+                mVideo.pause();
+                mVideo.src = "";
+            }
 
-function navigate(step) {
-  currentIndex = (currentIndex + step + hareketKartlari.length) % hareketKartlari.length;
-  openModal(currentIndex);
-}
+            modal.style.display = "flex";
+            setTimeout(() => {
+              modal.classList.add('show');
+            }, 10);
+        });
+    });
 
-// Klavye ile kontrol
-window.addEventListener("keydown", (e) => {
-  if (modal.style.display === "flex") {
-    if (e.key === "ArrowRight") navigate(1);
-    if (e.key === "ArrowLeft") navigate(-1);
-    if (e.key === "Escape") modal.style.display = "none";
-  }
-});
+    function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = "none";
+            mVideo.pause();
+            mVideo.src = "";
+        }, 300);
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const allCards = document.querySelectorAll('.card');
+
+    function filterCards() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+
+        allCards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const desc = card.querySelector('p').textContent.toLowerCase();
+            const category = card.querySelector('.card-tag')?.getAttribute('data-category') || '';
+            
+            const matchesSearch = title.includes(searchTerm) || desc.includes(searchTerm);
+            const matchesFilter = activeFilter === 'all' || category === activeFilter;
+
+            if (matchesSearch && matchesFilter) {
+                card.classList.remove('hidden');
+                card.style.opacity = '1';
+            } else {
+                card.classList.add('hidden');
+                card.style.opacity = '0';
+            }
+        });
+    }
+
+    searchInput.addEventListener('input', filterCards);
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterCards();
+        });
+    });
 </script>
 
+</body>
 </html>
