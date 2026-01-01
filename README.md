@@ -31,7 +31,7 @@ Bu proje **Statik Web Sitesi** yapısındadır. Herhangi bir sunucu kurulumu (No
 
 1.  Bu repository'i bilgisayarınıza indirin:
     ```bash
-    git clone [https://github.com/KULLANICI_ADIN/PROJE_ADIN.git](https://github.com/KULLANICI_ADIN/PROJE_ADIN.git)
+    https://github.com/beyzakilicarslan/SAT-Beyzanur-Kilicarslan
     ```
     *(Veya sağ üstteki **Code** butonuna tıklayıp **Download ZIP** diyerek indirebilirsiniz.)*
 
